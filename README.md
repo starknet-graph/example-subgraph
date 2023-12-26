@@ -4,6 +4,12 @@
 
 **An example Starknet subgraph for testing Starknet Graph setup**
 
+This simple subgraph that tracks the number of inbound and outbound transfers of the Ether token on `starknet-mainnet`.
+
+> [!NOTE]
+>
+> It's important to note that Starknet was initially launched without events, which means the **oldest blocks contain no events at all**. Since we're tracking ETH `Transfer` events here, it would be helpful to know that the first ever ETH `Transfer` event on mainnet was emitted in [this transaction](https://starkscan.co/tx/0x0243bacc2ad29c19d3c1819888012c5e16a8af2ed0e4783c1bef5b09ec91e6c1) on block `2823`. The subgraph would have no data if the Firehose stack hasn't synced past this block yet.
+
 ## Prerequisite
 
 This project requires [Node.js](https://nodejs.org/) to be installed.
