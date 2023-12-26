@@ -1,0 +1,9 @@
+type InboundTransfer @entity {
+  id: Bytes!
+  count: BigInt!
+}
+
+type OutboundTransfer @entity {
+  id: Bytes!
+  count: BigInt!
+}
