@@ -72,3 +72,41 @@ yarn deploy-local
 > ```
 >
 > where `http://localhost:8020/` and `http://localhost:5001` are replaced by the actual URL.
+
+## Making queries
+
+As noted above, the subgraph will only have data if it's synced past block `2823`. Once that happens, you can make subgraph queries like so (assuming that the `graph-node` query endpoint is available at `localhost:8000`):
+
+```console
+curl http://localhost:8000/subgraphs/name/starknet/example \
+    -d '{
+    "query": "{outboundTransfers(first:3,orderBy:count,orderDirection:desc){id count}}"
+}'
+```
+
+The query above checks the top 3 accounts that made the most outbound ETH transfers. An example response looks like this:
+
+```json
+{
+  "data": {
+    "outboundTransfers": [
+      {
+        "id": "0x0000000000000000000000000000000000000000000000000000000000000000",
+        "count": "9118"
+      },
+      {
+        "id": "0x07c57808b9cea7130c44aab2f8ca6147b04408943b48c6d8c3c83eb8cfdd8c0b",
+        "count": "2694"
+      },
+      {
+        "id": "0x06cc9b6f10480352867a271cbf80a701b95bd5b580052af44171ac1fff3e428b",
+        "count": "398"
+      }
+    ]
+  }
+}
+```
+
+> [!NOTE]
+>
+> The subgraph used to generate this example response was not synchronized.
